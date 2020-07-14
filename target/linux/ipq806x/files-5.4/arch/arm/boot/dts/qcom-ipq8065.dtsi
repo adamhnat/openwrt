@@ -125,12 +125,16 @@
 		clock-latency-ns = <100000>;
 	};
 };
+
+
 &nss0 {
-	qcom,mid-frequency = <600000000>;
-	qcom,max-frequency = <800000000>;
-};
+		qcom,low-frequency = <600000000>;
+		qcom,mid-frequency = <600000000>;
+		qcom,max-frequency = <600000000>;
+	};
 
 &nss1 {
-	qcom,mid-frequency = <600000000>;
-	qcom,max-frequency = <800000000>;
-};
+		qcom,low-frequency = <600000000>;
+		qcom,mid-frequency = <600000000>;
+		qcom,max-frequency = <600000000>;
+	};
