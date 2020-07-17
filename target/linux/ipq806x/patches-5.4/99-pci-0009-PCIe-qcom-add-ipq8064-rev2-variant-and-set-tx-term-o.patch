@@ -15,8 +15,6 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  drivers/pci/controller/dwc/pcie-qcom.c | 15 +++++++++++++++
  1 file changed, 15 insertions(+)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 7708c31dc010..c94faad449e5 100644
 --- a/drivers/pci/controller/dwc/pcie-qcom.c
 +++ b/drivers/pci/controller/dwc/pcie-qcom.c
 @@ -45,6 +45,9 @@
@@ -29,7 +27,7 @@ index 7708c31dc010..c94faad449e5 100644
  #define PCIE20_PARF_PHY_REFCLK			0x4C
  #define PHY_REFCLK_SSP_EN			BIT(16)
  #define PHY_REFCLK_USE_PAD			BIT(12)
-@@ -118,6 +121,7 @@ struct qcom_pcie_resources_2_1_0 {
+@@ -115,6 +118,7 @@ struct qcom_pcie_resources_2_1_0 {
  	u32 tx_swing_full;
  	u32 tx_swing_low;
  	u32 rx0_eq;
@@ -37,7 +35,7 @@ index 7708c31dc010..c94faad449e5 100644
  };
  
  struct qcom_pcie_resources_1_0_0 {
-@@ -318,6 +322,11 @@ static int qcom_pcie_get_resources_2_1_0(struct qcom_pcie *pcie)
+@@ -307,6 +311,11 @@ static int qcom_pcie_get_resources_2_1_0
  	if (IS_ERR(res->ext_reset))
  		return PTR_ERR(res->ext_reset);
  
@@ -49,7 +47,7 @@ index 7708c31dc010..c94faad449e5 100644
  	res->phy_reset = devm_reset_control_get_exclusive(dev, "phy");
  	return PTR_ERR_OR_ZERO(res->phy_reset);
  }
-@@ -402,6 +411,11 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
+@@ -391,6 +400,11 @@ static int qcom_pcie_init_2_1_0(struct q
  	/* enable PCIe clocks and resets */
  	qcom_clear_and_set_dword(pcie->parf + PCIE20_PARF_PHY_CTRL, BIT(0), 0);
  
@@ -60,8 +58,8 @@ index 7708c31dc010..c94faad449e5 100644
 +
  	writel(PCS_DEEMPH_TX_DEEMPH_GEN1(res->tx_deemph_gen1) |
  	       PCS_DEEMPH_TX_DEEMPH_GEN2_3_5DB(res->tx_deemph_gen2_3p5db) |
- 	       PCS_DEEMPH_TX_DEEMPH_GEN2_6DB(tx_deemph_gen2_6db),
-@@ -1485,6 +1499,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+ 	       PCS_DEEMPH_TX_DEEMPH_GEN2_6DB(res->tx_deemph_gen2_6db),
+@@ -1342,6 +1356,7 @@ err_pm_runtime_put:
  static const struct of_device_id qcom_pcie_match[] = {
  	{ .compatible = "qcom,pcie-apq8084", .data = &ops_1_0_0 },
  	{ .compatible = "qcom,pcie-ipq8064", .data = &ops_2_1_0 },
@@ -69,6 +67,3 @@ index 7708c31dc010..c94faad449e5 100644
  	{ .compatible = "qcom,pcie-apq8064", .data = &ops_2_1_0 },
  	{ .compatible = "qcom,pcie-msm8996", .data = &ops_2_3_2 },
  	{ .compatible = "qcom,pcie-ipq8074", .data = &ops_2_3_3 },
--- 
-2.25.1
-

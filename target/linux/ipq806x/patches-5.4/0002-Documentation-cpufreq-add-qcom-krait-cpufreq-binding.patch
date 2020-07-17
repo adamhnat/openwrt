@@ -11,9 +11,6 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  1 file changed, 79 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/cpufreq/krait-cpufreq.yaml
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/krait-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/krait-cpufreq.yaml
-new file mode 100644
-index 000000000000..9862c35f86c9
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/cpufreq/krait-cpufreq.yaml
 @@ -0,0 +1,79 @@
@@ -96,6 +93,3 @@ index 000000000000..9862c35f86c9
 +      };
 +
 +    };
--- 
-2.27.0
-

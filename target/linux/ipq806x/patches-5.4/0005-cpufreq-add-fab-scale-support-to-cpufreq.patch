@@ -11,8 +11,6 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  drivers/cpufreq/krait-cpufreq-dt.c | 30 ++++++++++++++++++++++++++++++
  1 file changed, 30 insertions(+)
 
-diff --git a/drivers/cpufreq/krait-cpufreq-dt.c b/drivers/cpufreq/krait-cpufreq-dt.c
-index 64b35cae2da4..1dc42d90907d 100644
 --- a/drivers/cpufreq/krait-cpufreq-dt.c
 +++ b/drivers/cpufreq/krait-cpufreq-dt.c
 @@ -11,6 +11,10 @@
@@ -26,7 +24,7 @@ index 64b35cae2da4..1dc42d90907d 100644
  #include "cpufreq-dt.h"
  
  struct private_data {
-@@ -116,6 +120,14 @@ static int set_target(struct cpufreq_policy *policy, unsigned int index)
+@@ -116,6 +120,14 @@ static int set_target(struct cpufreq_pol
  					}
  				}
  			}
@@ -41,7 +39,7 @@ index 64b35cae2da4..1dc42d90907d 100644
  		}
  		arch_set_freq_scale(policy->related_cpus, freq,
  				    policy->cpuinfo.max_freq);
-@@ -372,6 +384,10 @@ static int dt_cpufreq_probe(struct platform_device *pdev)
+@@ -372,6 +384,10 @@ static int dt_cpufreq_probe(struct platf
  	struct cpufreq_dt_platform_data *data = dev_get_platdata(&pdev->dev);
  	struct device_node *l2_np;
  	struct regulator *l2_regulator = NULL;
@@ -52,7 +50,7 @@ index 64b35cae2da4..1dc42d90907d 100644
  	int ret;
  
  	/*
-@@ -462,6 +478,17 @@ static int dt_cpufreq_probe(struct platform_device *pdev)
+@@ -462,6 +478,17 @@ static int dt_cpufreq_probe(struct platf
  			dt_cpufreq_driver.suspend = data->suspend;
  	}
  
@@ -70,7 +68,7 @@ index 64b35cae2da4..1dc42d90907d 100644
  	ret = cpufreq_register_driver(&dt_cpufreq_driver);
  	if (ret)
  		dev_err(&pdev->dev, "failed register driver: %d\n", ret);
-@@ -471,6 +498,9 @@ static int dt_cpufreq_probe(struct platform_device *pdev)
+@@ -471,6 +498,9 @@ static int dt_cpufreq_probe(struct platf
  
  static int dt_cpufreq_remove(struct platform_device *pdev)
  {
@@ -80,6 +78,3 @@ index 64b35cae2da4..1dc42d90907d 100644
  	kfree(cpus_shared_data->curr_freq_table);
  	kfree(cpus_shared_data);
  	cpufreq_unregister_driver(&dt_cpufreq_driver);
--- 
-2.27.0
-

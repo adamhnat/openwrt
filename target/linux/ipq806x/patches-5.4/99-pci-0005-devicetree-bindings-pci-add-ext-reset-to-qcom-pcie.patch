@@ -11,11 +11,9 @@ Acked-by: Rob Herring <robh@kernel.org>
  Documentation/devicetree/bindings/pci/qcom,pcie.txt | 6 ++++--
  1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-index becdbdc0fffa..6efcef040741 100644
 --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
 +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-@@ -179,6 +179,7 @@
+@@ -166,6 +166,7 @@
  			- "pwr"			PWR reset
  			- "ahb"			AHB reset
  			- "phy_ahb"		PHY AHB reset
@@ -23,7 +21,7 @@ index becdbdc0fffa..6efcef040741 100644
  
  - reset-names:
  	Usage: required for ipq8074
-@@ -287,8 +288,9 @@
+@@ -268,8 +269,9 @@
  			 <&gcc PCIE_HCLK_RESET>,
  			 <&gcc PCIE_POR_RESET>,
  			 <&gcc PCIE_PCI_RESET>,
@@ -35,6 +33,3 @@ index becdbdc0fffa..6efcef040741 100644
  		pinctrl-0 = <&pcie_pins_default>;
  		pinctrl-names = "default";
  	};
--- 
-2.25.1
-

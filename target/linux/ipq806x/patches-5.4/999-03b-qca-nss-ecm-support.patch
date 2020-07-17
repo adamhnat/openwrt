@@ -82,7 +82,7 @@
  #endif
 --- a/drivers/net/tun.c
 +++ b/drivers/net/tun.c
-@@ -2833,6 +2833,8 @@ static int tun_set_iff(struct net *net,
+@@ -2839,6 +2839,8 @@ static int tun_set_iff(struct net *net,
  				     ~(NETIF_F_HW_VLAN_CTAG_TX |
  				       NETIF_F_HW_VLAN_STAG_TX);
  
@@ -103,7 +103,7 @@
  
 --- a/net/ipv6/ip6_gre.c
 +++ b/net/ipv6/ip6_gre.c
-@@ -1895,6 +1895,7 @@ static void ip6gre_tap_setup(struct net_
+@@ -1898,6 +1898,7 @@ static void ip6gre_tap_setup(struct net_
  
  	dev->priv_flags &= ~IFF_TX_SKB_SHARING;
  	dev->priv_flags |= IFF_LIVE_ADDR_CHANGE;

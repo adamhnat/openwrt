@@ -300,16 +300,16 @@
  subsys_initcall(pktsched_init);
 --- a/net/sched/sch_generic.c
 +++ b/net/sched/sch_generic.c
-@@ -741,7 +741,7 @@ static void qdisc_free_cb(struct rcu_hea
+@@ -742,7 +742,7 @@ static void qdisc_free_cb(struct rcu_hea
  	qdisc_free(q);
  }
-
+ 
 -static void qdisc_destroy(struct Qdisc *qdisc)
 +void qdisc_destroy(struct Qdisc *qdisc)
  {
  	const struct Qdisc_ops  *ops = qdisc->ops;
  	struct sk_buff *skb, *tmp;
-@@ -772,6 +772,7 @@ static void qdisc_destroy(struct Qdisc *
+@@ -773,6 +773,7 @@ static void qdisc_destroy(struct Qdisc *
  
  	call_rcu(&qdisc->rcu, qdisc_free_cb);
  }

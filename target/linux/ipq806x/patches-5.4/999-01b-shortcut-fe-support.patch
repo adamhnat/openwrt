@@ -1,6 +1,6 @@
 --- a/include/linux/skbuff.h
 +++ b/include/linux/skbuff.h
-@@ -825,6 +825,9 @@
+@@ -825,6 +825,9 @@ struct sk_buff {
  	__u8			decrypted:1;
  #endif
  	__u8			gro_skip:1;
@@ -10,8 +10,6 @@
  
  #ifdef CONFIG_NET_SCHED
  	__u16			tc_index;	/* traffic control index */
- #if IS_ENABLED(CONFIG_BRIDGE) && IS_ENABLED(CONFIG_BRIDGE_IGMP_SNOOPING)
- int br_multicast_list_adjacent(struct net_device *dev,
 --- a/net/Kconfig
 +++ b/net/Kconfig
 @@ -473,3 +473,6 @@ config HAVE_CBPF_JIT
@@ -23,7 +21,7 @@
 +	bool "Enables kernel network stack path for Shortcut  Forwarding Engine
 --- a/net/core/dev.c
 +++ b/net/core/dev.c
-@@ -3192,8 +3192,17 @@ static int xmit_one(struct sk_buff *skb,
+@@ -3188,8 +3188,17 @@ static int xmit_one(struct sk_buff *skb,
  	unsigned int len;
  	int rc;
  
@@ -41,7 +39,7 @@
  
  #ifdef CONFIG_ETHERNET_PACKET_MANGLE
  	if (!dev->eth_mangle_tx ||
-@@ -4684,6 +4693,11 @@ void netdev_rx_handler_unregister(struct
+@@ -4682,6 +4691,11 @@ void netdev_rx_handler_unregister(struct
  }
  EXPORT_SYMBOL_GPL(netdev_rx_handler_unregister);
  
@@ -53,7 +51,7 @@
  /*
   * Limit the use of PFMEMALLOC reserves to those protocols that implement
   * the special handling of PFMEMALLOC skbs.
-@@ -4733,6 +4747,9 @@ static int __netif_receive_skb_core(stru
+@@ -4731,6 +4745,9 @@ static int __netif_receive_skb_core(stru
  	bool deliver_exact = false;
  	int ret = NET_RX_DROP;
  	__be16 type;
@@ -63,7 +61,7 @@
  
  	net_timestamp_check(!netdev_tstamp_prequeue, skb);
  
-@@ -4773,6 +4790,16 @@ another_round:
+@@ -4771,6 +4788,16 @@ another_round:
  			goto out;
  	}
  

@@ -17,11 +17,9 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  3 files changed, 175 insertions(+)
  create mode 100644 drivers/net/phy/mdio-ipq8064.c
 
-diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-index 9dabe03a668c..ec2a5493a7e8 100644
 --- a/drivers/net/phy/Kconfig
 +++ b/drivers/net/phy/Kconfig
-@@ -157,6 +157,14 @@ config MDIO_I2C
+@@ -156,6 +156,14 @@ config MDIO_I2C
  
  	  This is library mode.
  
@@ -36,11 +34,9 @@ index 9dabe03a668c..ec2a5493a7e8 100644
  config MDIO_MOXART
  	tristate "MOXA ART MDIO interface support"
  	depends on ARCH_MOXART || COMPILE_TEST
-diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-index fe5badf13b65..8f02bd2089f3 100644
 --- a/drivers/net/phy/Makefile
 +++ b/drivers/net/phy/Makefile
-@@ -36,6 +36,7 @@ obj-$(CONFIG_MDIO_CAVIUM)	+= mdio-cavium.o
+@@ -51,6 +51,7 @@ obj-$(CONFIG_MDIO_CAVIUM)	+= mdio-cavium
  obj-$(CONFIG_MDIO_GPIO)		+= mdio-gpio.o
  obj-$(CONFIG_MDIO_HISI_FEMAC)	+= mdio-hisi-femac.o
  obj-$(CONFIG_MDIO_I2C)		+= mdio-i2c.o
@@ -48,9 +44,6 @@ index fe5badf13b65..8f02bd2089f3 100644
  obj-$(CONFIG_MDIO_MOXART)	+= mdio-moxart.o
  obj-$(CONFIG_MDIO_MSCC_MIIM)	+= mdio-mscc-miim.o
  obj-$(CONFIG_MDIO_OCTEON)	+= mdio-octeon.o
-diff --git a/drivers/net/phy/mdio-ipq8064.c b/drivers/net/phy/mdio-ipq8064.c
-new file mode 100644
-index 000000000000..1bd18857e1c5
 --- /dev/null
 +++ b/drivers/net/phy/mdio-ipq8064.c
 @@ -0,0 +1,166 @@
@@ -220,6 +213,3 @@ index 000000000000..1bd18857e1c5
 +MODULE_AUTHOR("Christian Lamparter <chunkeey@gmail.com>");
 +MODULE_AUTHOR("Ansuel Smith <ansuelsmth@gmail.com>");
 +MODULE_LICENSE("GPL");
--- 
-2.25.0
-

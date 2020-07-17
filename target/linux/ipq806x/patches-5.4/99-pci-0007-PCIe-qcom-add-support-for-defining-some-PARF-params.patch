@@ -14,8 +14,6 @@ Cc: stable@vger.kernel.org # v4.5+
  drivers/pci/controller/dwc/pcie-qcom.c | 47 ++++++++++++++++++++++++--
  1 file changed, 45 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 23a549be5dbd..7708c31dc010 100644
 --- a/drivers/pci/controller/dwc/pcie-qcom.c
 +++ b/drivers/pci/controller/dwc/pcie-qcom.c
 @@ -46,6 +46,9 @@
@@ -28,7 +26,7 @@ index 23a549be5dbd..7708c31dc010 100644
  #define PCIE20_PARF_DBI_BASE_ADDR		0x168
  #define PCIE20_PARF_SLV_ADDR_SPACE_SIZE		0x16C
  #define PCIE20_PARF_MHI_CLOCK_RESET_CTRL	0x174
-@@ -77,6 +80,18 @@
+@@ -76,6 +79,18 @@
  #define DBI_RO_WR_EN				1
  
  #define PERST_DELAY_US				1000
@@ -47,7 +45,7 @@ index 23a549be5dbd..7708c31dc010 100644
  
  #define PCIE20_v3_PARF_SLV_ADDR_SPACE_SIZE	0x358
  #define SLV_ADDR_SPACE_SZ			0x10000000
-@@ -97,6 +112,12 @@ struct qcom_pcie_resources_2_1_0 {
+@@ -94,6 +109,12 @@ struct qcom_pcie_resources_2_1_0 {
  	struct reset_control *phy_reset;
  	struct reset_control *ext_reset;
  	struct regulator_bulk_data supplies[QCOM_PCIE_2_1_0_MAX_SUPPLY];
@@ -60,7 +58,7 @@ index 23a549be5dbd..7708c31dc010 100644
  };
  
  struct qcom_pcie_resources_1_0_0 {
-@@ -234,8 +255,21 @@ static int qcom_pcie_get_resources_2_1_0(struct qcom_pcie *pcie)
+@@ -223,8 +244,21 @@ static int qcom_pcie_get_resources_2_1_0
  	struct qcom_pcie_resources_2_1_0 *res = &pcie->res.v2_1_0;
  	struct dw_pcie *pci = pcie->pci;
  	struct device *dev = pci->dev;
@@ -82,7 +80,7 @@ index 23a549be5dbd..7708c31dc010 100644
  	res->supplies[0].supply = "vdda";
  	res->supplies[1].supply = "vdda_phy";
  	res->supplies[2].supply = "vdda_refclk";
-@@ -368,9 +402,18 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
+@@ -357,9 +391,18 @@ static int qcom_pcie_init_2_1_0(struct q
  	/* enable PCIe clocks and resets */
  	qcom_clear_and_set_dword(pcie->parf + PCIE20_PARF_PHY_CTRL, BIT(0), 0);
  
@@ -103,6 +101,3 @@ index 23a549be5dbd..7708c31dc010 100644
  
  	ret = reset_control_deassert(res->phy_reset);
  	if (ret) {
--- 
-2.25.1
-

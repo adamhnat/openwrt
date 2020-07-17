@@ -21,11 +21,9 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  3 files changed, 502 insertions(+)
  create mode 100644 drivers/cpufreq/krait-cpufreq-dt.c
 
-diff --git a/drivers/cpufreq/Kconfig.arm b/drivers/cpufreq/Kconfig.arm
-index 3858d86cf409..fe522c1cab6e 100644
 --- a/drivers/cpufreq/Kconfig.arm
 +++ b/drivers/cpufreq/Kconfig.arm
-@@ -126,6 +126,15 @@ config ARM_OMAP2PLUS_CPUFREQ
+@@ -132,6 +132,15 @@ config ARM_OMAP2PLUS_CPUFREQ
  	depends on ARCH_OMAP2PLUS
  	default ARCH_OMAP2PLUS
  
@@ -41,11 +39,9 @@ index 3858d86cf409..fe522c1cab6e 100644
  config ARM_QCOM_CPUFREQ_NVMEM
  	tristate "Qualcomm nvmem based CPUFreq"
  	depends on ARM64
-diff --git a/drivers/cpufreq/Makefile b/drivers/cpufreq/Makefile
-index f6670c4abbb0..ebc35b2a8e4a 100644
 --- a/drivers/cpufreq/Makefile
 +++ b/drivers/cpufreq/Makefile
-@@ -63,6 +63,7 @@ obj-$(CONFIG_ARM_PXA2xx_CPUFREQ)	+= pxa2xx-cpufreq.o
+@@ -65,6 +65,7 @@ obj-$(CONFIG_ARM_PXA2xx_CPUFREQ)	+= pxa2
  obj-$(CONFIG_PXA3xx)			+= pxa3xx-cpufreq.o
  obj-$(CONFIG_ARM_QCOM_CPUFREQ_HW)	+= qcom-cpufreq-hw.o
  obj-$(CONFIG_ARM_QCOM_CPUFREQ_NVMEM)	+= qcom-cpufreq-nvmem.o
@@ -53,9 +49,6 @@ index f6670c4abbb0..ebc35b2a8e4a 100644
  obj-$(CONFIG_ARM_RASPBERRYPI_CPUFREQ) 	+= raspberrypi-cpufreq.o
  obj-$(CONFIG_ARM_S3C2410_CPUFREQ)	+= s3c2410-cpufreq.o
  obj-$(CONFIG_ARM_S3C2412_CPUFREQ)	+= s3c2412-cpufreq.o
-diff --git a/drivers/cpufreq/krait-cpufreq-dt.c b/drivers/cpufreq/krait-cpufreq-dt.c
-new file mode 100644
-index 000000000000..64b35cae2da4
 --- /dev/null
 +++ b/drivers/cpufreq/krait-cpufreq-dt.c
 @@ -0,0 +1,492 @@
@@ -551,6 +544,3 @@ index 000000000000..64b35cae2da4
 +MODULE_AUTHOR("Ansuel Smith <ansuelsmth@gmail.com>");
 +MODULE_DESCRIPTION("Krait cpufreq driver");
 +MODULE_LICENSE("GPL");
--- 
-2.27.0
-

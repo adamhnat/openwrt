@@ -11,9 +11,6 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  1 file changed, 58 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/clock/qcom,fab-scaling.yaml
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,fab-scaling.yaml b/Documentation/devicetree/bindings/clock/qcom,fab-scaling.yaml
-new file mode 100644
-index 000000000000..779046df9ce2
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/clock/qcom,fab-scaling.yaml
 @@ -0,0 +1,58 @@
@@ -75,6 +72,3 @@ index 000000000000..779046df9ce2
 +      fab_freq_nominal = <400000000>;
 +      cpu_freq_threshold = <1000000000>;
 +    };
--- 
-2.27.0
-

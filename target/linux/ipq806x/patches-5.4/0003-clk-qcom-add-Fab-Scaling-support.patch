@@ -17,8 +17,6 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  create mode 100644 drivers/clk/qcom/fab_scaling.c
  create mode 100644 include/linux/fab_scaling.h
 
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index 15cdcdc9b3b8..c14e227d1dca 100644
 --- a/drivers/clk/qcom/Kconfig
 +++ b/drivers/clk/qcom/Kconfig
 @@ -7,6 +7,16 @@ config QCOM_GDSC
@@ -38,11 +36,9 @@ index 15cdcdc9b3b8..c14e227d1dca 100644
  config QCOM_RPMCC
  	bool
  
-diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-index 656a87e629d4..1f5fb0ed8abe 100644
 --- a/drivers/clk/qcom/Makefile
 +++ b/drivers/clk/qcom/Makefile
-@@ -15,6 +15,7 @@ clk-qcom-$(CONFIG_KRAIT_CLOCKS) += clk-krait.o
+@@ -15,6 +15,7 @@ clk-qcom-$(CONFIG_KRAIT_CLOCKS) += clk-k
  clk-qcom-y += clk-hfpll.o
  clk-qcom-y += reset.o
  clk-qcom-$(CONFIG_QCOM_GDSC) += gdsc.o
@@ -50,9 +46,6 @@ index 656a87e629d4..1f5fb0ed8abe 100644
  
  # Keep alphabetically sorted by config
  obj-$(CONFIG_APQ_GCC_8084) += gcc-apq8084.o
-diff --git a/drivers/clk/qcom/fab_scaling.c b/drivers/clk/qcom/fab_scaling.c
-new file mode 100644
-index 000000000000..74fcebe77aa2
 --- /dev/null
 +++ b/drivers/clk/qcom/fab_scaling.c
 @@ -0,0 +1,214 @@
@@ -270,9 +263,6 @@ index 000000000000..74fcebe77aa2
 +	platform_driver_unregister(&fab_scaling_ipq806x_driver);
 +}
 +module_exit(fab_scaling_ipq806x_exit);
-diff --git a/include/linux/fab_scaling.h b/include/linux/fab_scaling.h
-new file mode 100644
-index 000000000000..37d7f91d9ac3
 --- /dev/null
 +++ b/include/linux/fab_scaling.h
 @@ -0,0 +1,45 @@
@@ -321,6 +311,3 @@ index 000000000000..37d7f91d9ac3
 +int fab_scaling_unregister(enum fab_consumers type);
 +
 +#endif
--- 
-2.27.0
-

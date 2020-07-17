@@ -16,8 +16,6 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  drivers/pci/controller/dwc/pcie-qcom.c | 16 ++++++++++++++++
  1 file changed, 16 insertions(+)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index c94faad449e5..ad32baa3e380 100644
 --- a/drivers/pci/controller/dwc/pcie-qcom.c
 +++ b/drivers/pci/controller/dwc/pcie-qcom.c
 @@ -27,6 +27,7 @@
@@ -28,7 +26,7 @@ index c94faad449e5..ad32baa3e380 100644
  #include "pcie-designware.h"
  
  #define PCIE20_PARF_SYS_CTRL			0x00
-@@ -99,6 +100,8 @@
+@@ -98,6 +99,8 @@
  #define PCIE20_v3_PARF_SLV_ADDR_SPACE_SIZE	0x358
  #define SLV_ADDR_SPACE_SZ			0x10000000
  
@@ -37,7 +35,7 @@ index c94faad449e5..ad32baa3e380 100644
  #define QCOM_PCIE_2_1_0_MAX_SUPPLY	3
  struct qcom_pcie_resources_2_1_0 {
  	struct clk *iface_clk;
-@@ -205,6 +208,7 @@ struct qcom_pcie {
+@@ -194,6 +197,7 @@ struct qcom_pcie {
  	struct phy *phy;
  	struct gpio_desc *reset;
  	const struct qcom_pcie_ops *ops;
@@ -45,7 +43,7 @@ index c94faad449e5..ad32baa3e380 100644
  };
  
  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-@@ -462,6 +466,14 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
+@@ -451,6 +455,14 @@ static int qcom_pcie_init_2_1_0(struct q
  	/* wait for clock acquisition */
  	usleep_range(1000, 1500);
  
@@ -60,7 +58,7 @@ index c94faad449e5..ad32baa3e380 100644
  
  	/* Set the Max TLP size to 2K, instead of using default of 4K */
  	writel(CFG_REMOTE_RD_REQ_BRIDGE_SIZE_2K,
-@@ -1431,6 +1443,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+@@ -1288,6 +1300,10 @@ static int qcom_pcie_probe(struct platfo
  		goto err_pm_runtime_put;
  	}
  
@@ -71,6 +69,3 @@ index c94faad449e5..ad32baa3e380 100644
  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "parf");
  	pcie->parf = devm_ioremap_resource(dev, res);
  	if (IS_ERR(pcie->parf)) {
--- 
-2.25.1
-

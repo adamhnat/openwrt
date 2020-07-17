@@ -129,7 +129,7 @@
  static struct freq_tbl clk_tbl_gsbi_uart[] = {
  	{  1843200, P_PLL8, 2,  6, 625 },
  	{  3686400, P_PLL8, 2, 12, 625 },
-@@ -2643,7 +2702,9 @@ static const struct freq_tbl clk_tbl_nss
+@@ -2642,7 +2701,9 @@ static const struct freq_tbl clk_tbl_nss
  	{ 110000000, P_PLL18, 1, 1, 5 },
  	{ 275000000, P_PLL18, 2, 0, 0 },
  	{ 550000000, P_PLL18, 1, 0, 0 },
@@ -139,7 +139,7 @@
  	{ }
  };
  
-@@ -2753,6 +2814,319 @@ static struct clk_dyn_rcg ubi32_core2_sr
+@@ -2752,6 +2813,319 @@ static struct clk_dyn_rcg ubi32_core2_sr
  	},
  };
  
@@ -459,7 +459,7 @@
  static struct clk_regmap *gcc_ipq806x_clks[] = {
  	[PLL0] = &pll0.clkr,
  	[PLL0_VOTE] = &pll0_vote,
-@@ -2760,6 +3134,7 @@ static struct clk_regmap *gcc_ipq806x_cl
+@@ -2759,6 +3133,7 @@ static struct clk_regmap *gcc_ipq806x_cl
  	[PLL4_VOTE] = &pll4_vote,
  	[PLL8] = &pll8.clkr,
  	[PLL8_VOTE] = &pll8_vote,
@@ -467,7 +467,7 @@
  	[PLL14] = &pll14.clkr,
  	[PLL14_VOTE] = &pll14_vote,
  	[PLL18] = &pll18.clkr,
-@@ -2871,9 +3246,16 @@ static struct clk_regmap *gcc_ipq806x_cl
+@@ -2870,9 +3245,16 @@ static struct clk_regmap *gcc_ipq806x_cl
  	[UBI32_CORE2_CLK_SRC] = &ubi32_core2_src_clk.clkr,
  	[NSSTCM_CLK_SRC] = &nss_tcm_src.clkr,
  	[NSSTCM_CLK] = &nss_tcm_clk.clkr,
@@ -484,7 +484,7 @@
  };
  
  static const struct qcom_reset_map gcc_ipq806x_resets[] = {
-@@ -3005,6 +3387,11 @@ static const struct qcom_reset_map gcc_i
+@@ -3004,6 +3386,11 @@ static const struct qcom_reset_map gcc_i
  	[GMAC_CORE3_RESET] = { 0x3cfc, 0 },
  	[GMAC_CORE4_RESET] = { 0x3d1c, 0 },
  	[GMAC_AHB_RESET] = { 0x3e24, 0 },
@@ -496,7 +496,7 @@
  	[NSS_CH0_RST_RX_CLK_N_RESET] = { 0x3b60, 0 },
  	[NSS_CH0_RST_TX_CLK_N_RESET] = { 0x3b60, 1 },
  	[NSS_CH0_RST_RX_125M_N_RESET] = { 0x3b60, 2 },
-@@ -3080,6 +3467,12 @@ static int gcc_ipq806x_probe(struct plat
+@@ -3079,6 +3466,12 @@ static int gcc_ipq806x_probe(struct plat
  	if (!regmap)
  		return -ENODEV;
  

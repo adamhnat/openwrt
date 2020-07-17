@@ -13,11 +13,9 @@ Cc: stable@vger.kernel.org # v4.5+
  drivers/pci/controller/dwc/pcie-qcom.c | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 7a8901efc031..921030a64bab 100644
 --- a/drivers/pci/controller/dwc/pcie-qcom.c
 +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -95,6 +95,7 @@ struct qcom_pcie_resources_2_1_0 {
+@@ -92,6 +92,7 @@ struct qcom_pcie_resources_2_1_0 {
  	struct reset_control *ahb_reset;
  	struct reset_control *por_reset;
  	struct reset_control *phy_reset;
@@ -25,7 +23,7 @@ index 7a8901efc031..921030a64bab 100644
  	struct regulator_bulk_data supplies[QCOM_PCIE_2_1_0_MAX_SUPPLY];
  };
  
-@@ -272,6 +273,10 @@ static int qcom_pcie_get_resources_2_1_0(struct qcom_pcie *pcie)
+@@ -261,6 +262,10 @@ static int qcom_pcie_get_resources_2_1_0
  	if (IS_ERR(res->por_reset))
  		return PTR_ERR(res->por_reset);
  
@@ -36,7 +34,7 @@ index 7a8901efc031..921030a64bab 100644
  	res->phy_reset = devm_reset_control_get_exclusive(dev, "phy");
  	return PTR_ERR_OR_ZERO(res->phy_reset);
  }
-@@ -285,6 +290,7 @@ static void qcom_pcie_deinit_2_1_0(struct qcom_pcie *pcie)
+@@ -274,6 +279,7 @@ static void qcom_pcie_deinit_2_1_0(struc
  	reset_control_assert(res->axi_reset);
  	reset_control_assert(res->ahb_reset);
  	reset_control_assert(res->por_reset);
@@ -44,7 +42,7 @@ index 7a8901efc031..921030a64bab 100644
  	reset_control_assert(res->phy_reset);
  	clk_disable_unprepare(res->iface_clk);
  	clk_disable_unprepare(res->core_clk);
-@@ -347,6 +353,12 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
+@@ -336,6 +342,12 @@ static int qcom_pcie_init_2_1_0(struct q
  		goto err_deassert_ahb;
  	}
  
@@ -57,6 +55,3 @@ index 7a8901efc031..921030a64bab 100644
  	/* enable PCIe clocks and resets */
  	val = readl(pcie->parf + PCIE20_PARF_PHY_CTRL);
  	val &= ~BIT(0);
--- 
-2.25.1
-

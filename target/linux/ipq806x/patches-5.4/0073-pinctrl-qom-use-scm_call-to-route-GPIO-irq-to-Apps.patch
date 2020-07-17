@@ -24,7 +24,7 @@ Signed-off-by: Ajay Kishore <akisho@codeaurora.org>
  #include "../core.h"
  #include "../pinconf.h"
  #include "pinctrl-msm.h"
-@@ -60,6 +62,8 @@ struct msm_pinctrl {
+@@ -57,6 +58,8 @@ struct msm_pinctrl {
  	struct irq_chip irq_chip;
  	int irq;
  
@@ -33,7 +33,7 @@ Signed-off-by: Ajay Kishore <akisho@codeaurora.org>
  	raw_spinlock_t lock;
  
  	DECLARE_BITMAP(dual_edge_irqs, MAX_NR_GPIO);
-@@ -68,6 +72,7 @@ struct msm_pinctrl {
+@@ -64,6 +67,7 @@ struct msm_pinctrl {
  
  	const struct msm_pinctrl_soc_data *soc;
  	void __iomem *regs[MAX_NR_TILES];
@@ -41,7 +41,7 @@ Signed-off-by: Ajay Kishore <akisho@codeaurora.org>
  };
  
  #define MSM_ACCESSOR(name) \
-@@ -882,11 +887,30 @@ static int msm_gpio_irq_set_type(struct irq_data *d, unsigned int type)
+@@ -832,11 +836,30 @@ static int msm_gpio_irq_set_type(struct
  	else
  		clear_bit(d->hwirq, pctrl->dual_edge_irqs);
  
@@ -77,7 +77,7 @@ Signed-off-by: Ajay Kishore <akisho@codeaurora.org>
  
  	/* Update configuration for gpio.
  	 * RAW_STATUS_EN is left on for all gpio irqs. Due to the
-@@ -1241,6 +1266,9 @@ int msm_pinctrl_probe(struct platform_device *pdev,
+@@ -1138,6 +1161,9 @@ int msm_pinctrl_probe(struct platform_de
  	pctrl->dev = &pdev->dev;
  	pctrl->soc = soc_data;
  	pctrl->chip = msm_gpio_template;
@@ -87,8 +87,8 @@ Signed-off-by: Ajay Kishore <akisho@codeaurora.org>
  
  	raw_spin_lock_init(&pctrl->lock);
  
-@@ -1253,9 +1281,11 @@ int msm_pinctrl_probe(struct platform_device *pdev,
-		pctrl->regs[0] = devm_ioremap_resource(&pdev->dev, res);
+@@ -1154,6 +1180,8 @@ int msm_pinctrl_probe(struct platform_de
+ 		pctrl->regs[0] = devm_ioremap_resource(&pdev->dev, res);
  		if (IS_ERR(pctrl->regs[0]))
  			return PTR_ERR(pctrl->regs[0]);
 +

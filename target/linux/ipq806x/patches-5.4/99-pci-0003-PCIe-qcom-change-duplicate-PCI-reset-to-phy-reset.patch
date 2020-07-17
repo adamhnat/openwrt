@@ -12,11 +12,9 @@ Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
  drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++----------
  1 file changed, 8 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 2a39dfdccfc8..7a8901efc031 100644
 --- a/drivers/pci/controller/dwc/pcie-qcom.c
 +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -280,14 +280,14 @@ static void qcom_pcie_deinit_2_1_0(struct qcom_pcie *pcie)
+@@ -269,14 +269,14 @@ static void qcom_pcie_deinit_2_1_0(struc
  {
  	struct qcom_pcie_resources_2_1_0 *res = &pcie->res.v2_1_0;
  
@@ -33,7 +31,7 @@ index 2a39dfdccfc8..7a8901efc031 100644
  	clk_disable_unprepare(res->aux_clk);
  	clk_disable_unprepare(res->ref_clk);
  	regulator_bulk_disable(ARRAY_SIZE(res->supplies), res->supplies);
-@@ -325,12 +325,6 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
+@@ -314,12 +314,6 @@ static int qcom_pcie_init_2_1_0(struct q
  		goto err_clk_core;
  	}
  
@@ -46,7 +44,7 @@ index 2a39dfdccfc8..7a8901efc031 100644
  	if (res->aux_clk) {
  		ret = clk_prepare_enable(res->aux_clk);
  		if (ret) {
-@@ -387,6 +381,12 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
+@@ -376,6 +370,12 @@ static int qcom_pcie_init_2_1_0(struct q
  		return ret;
  	}
  
@@ -59,7 +57,7 @@ index 2a39dfdccfc8..7a8901efc031 100644
  	/* wait for clock acquisition */
  	usleep_range(1000, 1500);
  
-@@ -404,8 +404,6 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
+@@ -393,8 +393,6 @@ err_deassert_ahb:
  err_clk_ref:
  	clk_disable_unprepare(res->aux_clk);
  err_clk_aux:
@@ -68,6 +66,3 @@ index 2a39dfdccfc8..7a8901efc031 100644
  	clk_disable_unprepare(res->core_clk);
  err_clk_core:
  	clk_disable_unprepare(res->iface_clk);
--- 
-2.25.1
-
