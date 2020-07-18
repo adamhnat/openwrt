@@ -1,6 +1,14 @@
 --- a/include/linux/if_bridge.h
 +++ b/include/linux/if_bridge.h
-@@ -173,6 +173,8 @@ struct br_fdb_event {
+@@ -53,6 +53,7 @@ struct br_ip_list {
+ extern void brioctl_set(int (*ioctl_hook)(struct net *, unsigned int, void __user *));
+ extern void br_dev_update_stats(struct net_device *dev,
+ 				struct rtnl_link_stats64 *nlstats);
++extern bool br_is_hairpin_enabled(struct net_device *dev);
+ 
+ #if IS_ENABLED(CONFIG_BRIDGE) && IS_ENABLED(CONFIG_BRIDGE_IGMP_SNOOPING)
+ int br_multicast_list_adjacent(struct net_device *dev,
+@@ -173,6 +174,8 @@ struct br_fdb_event {
  	struct net_device *dev;
  	unsigned char      addr[6];
  	unsigned char      is_local;
@@ -111,3 +119,23 @@
  	netif_keep_dst(dev);
  }
  
+--- a/net/bridge/br_if.c
++++ b/net/bridge/br_if.c
+@@ -792,6 +792,17 @@ void br_dev_update_stats(struct net_devi
+ EXPORT_SYMBOL_GPL(br_dev_update_stats);
+ 
+ /* QCA NSS ECM support - Start */
++/* API to know if hairpin feature is enabled/disabled on this bridge port */
++bool br_is_hairpin_enabled(struct net_device *dev)
++{
++	struct net_bridge_port *port = br_port_get_check_rcu(dev);
++
++	if (likely(port))
++		return port->flags & BR_HAIRPIN_MODE;
++	return false;
++}
++EXPORT_SYMBOL_GPL(br_is_hairpin_enabled);
++
+ /* br_port_dev_get()
+  *      If a skb is provided, and the br_port_dev_get_hook_t hook exists,
+  *      use that to try and determine the egress port for that skb.
