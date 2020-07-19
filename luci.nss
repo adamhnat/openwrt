@@ -2217,14 +2217,14 @@ CONFIG_PACKAGE_kmod-ifb=y
 # CONFIG_PACKAGE_kmod-phy-broadcom is not set
 # CONFIG_PACKAGE_kmod-phy-realtek is not set
 # CONFIG_PACKAGE_kmod-phylink is not set
-# CONFIG_PACKAGE_kmod-qca-nss-cfi-cryptoapi is not set
-# CONFIG_PACKAGE_kmod-qca-nss-crypto is not set
+CONFIG_PACKAGE_kmod-qca-nss-cfi-cryptoapi=y
+CONFIG_PACKAGE_kmod-qca-nss-crypto=y
 CONFIG_PACKAGE_kmod-qca-nss-drv=y
 # CONFIG_PACKAGE_kmod-qca-nss-drv-capwapmgr is not set
 # CONFIG_PACKAGE_kmod-qca-nss-drv-dtlsmgr is not set
-# CONFIG_PACKAGE_kmod-qca-nss-drv-gre is not set
-# CONFIG_PACKAGE_kmod-qca-nss-drv-ipsecmgr is not set
-# CONFIG_PACKAGE_kmod-qca-nss-drv-l2tpv2 is not set
+CONFIG_PACKAGE_kmod-qca-nss-drv-gre=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-ipsecmgr=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-l2tpv2=y
 # CONFIG_PACKAGE_kmod-qca-nss-drv-lag-mgr is not set
 # CONFIG_PACKAGE_kmod-qca-nss-drv-map-t is not set
 CONFIG_PACKAGE_kmod-qca-nss-drv-pppoe=y
@@ -2277,16 +2277,17 @@ CONFIG_PACKAGE_kmod-bonding=y
 # CONFIG_PACKAGE_kmod-fou is not set
 # CONFIG_PACKAGE_kmod-fou6 is not set
 # CONFIG_PACKAGE_kmod-geneve is not set
-# CONFIG_PACKAGE_kmod-gre is not set
-# CONFIG_PACKAGE_kmod-gre6 is not set
+CONFIG_PACKAGE_kmod-gre=y
+CONFIG_PACKAGE_kmod-gre6=y
 # CONFIG_PACKAGE_kmod-ip-vti is not set
-# CONFIG_PACKAGE_kmod-ip6-tunnel is not set
+CONFIG_PACKAGE_kmod-ip6-tunnel=y
 # CONFIG_PACKAGE_kmod-ip6-vti is not set
 # CONFIG_PACKAGE_kmod-ipip is not set
 CONFIG_PACKAGE_kmod-ipsec=y
 # CONFIG_PACKAGE_kmod-ipsec4 is not set
 # CONFIG_PACKAGE_kmod-ipsec6 is not set
-# CONFIG_PACKAGE_kmod-iptunnel6 is not set
+CONFIG_PACKAGE_kmod-iptunnel=y
+CONFIG_PACKAGE_kmod-iptunnel6=y
 # CONFIG_PACKAGE_kmod-isdn4linux is not set
 # CONFIG_PACKAGE_kmod-jool is not set
 CONFIG_PACKAGE_kmod-l2tp=y
@@ -2827,6 +2828,7 @@ CONFIG_PACKAGE_lua=y
 # CONFIG_PACKAGE_python3-evdev is not set
 # CONFIG_PACKAGE_python3-flask is not set
 # CONFIG_PACKAGE_python3-flask-login is not set
+# CONFIG_PACKAGE_python3-flup is not set
 # CONFIG_PACKAGE_python3-gdbm is not set
 # CONFIG_PACKAGE_python3-gmpy2 is not set
 # CONFIG_PACKAGE_python3-gnupg is not set
@@ -4004,7 +4006,6 @@ CONFIG_PACKAGE_libuuid=y
 # CONFIG_PACKAGE_libwebsockets-mbedtls is not set
 # CONFIG_PACKAGE_libwebsockets-openssl is not set
 # CONFIG_PACKAGE_libwrap is not set
-# CONFIG_PACKAGE_libwslay is not set
 # CONFIG_PACKAGE_libxerces-c is not set
 # CONFIG_PACKAGE_libxerces-c-samples is not set
 # CONFIG_PACKAGE_libxml2 is not set
@@ -4125,6 +4126,7 @@ CONFIG_LUCI_LANG_pl=y
 
 CONFIG_PACKAGE_luci-compat=y
 CONFIG_PACKAGE_luci-mod-admin-full=y
+# CONFIG_PACKAGE_luci-mod-battstatus is not set
 # CONFIG_PACKAGE_luci-mod-failsafe is not set
 # CONFIG_PACKAGE_luci-mod-freifunk is not set
 # CONFIG_PACKAGE_luci-mod-freifunk-community is not set
@@ -6707,6 +6709,7 @@ CONFIG_PACKAGE_oscam=m
 # CONFIG_PACKAGE_qmi-utils is not set
 # CONFIG_PACKAGE_qrencode is not set
 # CONFIG_PACKAGE_quota is not set
+# CONFIG_PACKAGE_ravpower-mcu is not set
 # CONFIG_PACKAGE_readsb is not set
 # CONFIG_PACKAGE_relayctl is not set
 # CONFIG_PACKAGE_rename is not set
