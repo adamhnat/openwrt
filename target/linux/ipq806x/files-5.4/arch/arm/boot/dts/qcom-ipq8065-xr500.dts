@@ -4,7 +4,7 @@
 
 / {
 	model = "Netgear XR500";
-	compatible = "netgear,xr500", "qcom,ipq8065", "qcom,ipq8064";
+	compatible = "netgear,r7800", "netgear,xr500",  "qcom,ipq8065", "qcom,ipq8064";
 
 	memory@0 {
 		reg = <0x42000000 0x1e000000>;
@@ -27,18 +27,13 @@
 	};
 
 	aliases {
-		serial0 = &gsbi4_serial;
 		mdio-gpio0 = &mdio0;
 
-		led-boot = &power_white;
-		led-failsafe = &power_amber;
-		led-running = &power_white;
-		led-upgrade = &power_amber;
+		led-boot = &led_power_white;
+		led-failsafe = &led_power_amber;
+		led-running = &led_power_white;
+		led-upgrade = &led_power_amber;
 		label-mac-device = &gmac2;
-	};
-
-	chosen {
-		stdout-path = "serial0:115200n8";
 	};
 
 	keys {
@@ -76,13 +71,13 @@
 		pinctrl-0 = <&led_pins>;
 		pinctrl-names = "default";
 
-		power_white: power_white {
+		led_power_white: power_white {
 			label = "xr500:white:power";
 			gpios = <&qcom_pinmux 53 GPIO_ACTIVE_HIGH>;
 			default-state = "keep";
 		};
 
-		power_amber: power_amber {
+		led_power_amber: power_amber {
 			label = "xr500:amber:power";
 			gpios = <&qcom_pinmux 9 GPIO_ACTIVE_HIGH>;
 		};
@@ -134,15 +129,6 @@
 		};
 	};
 
-	i2c4_pins: i2c4_pinmux {
-		mux {
-			pins = "gpio12", "gpio13";
-			function = "gsbi4";
-			drive-strength = <12>;
-			bias-disable;
-		};
-	};
-
 	led_pins: led_pins {
 		mux {
 			pins = "gpio7", "gpio8", "gpio9", "gpio22", "gpio23",
@@ -153,38 +139,7 @@
 		};
 	};
 
-	nand_pins: nand_pins {
-		disable {
-			pins = "gpio34", "gpio35", "gpio36",
-					"gpio37", "gpio38";
-			function = "nand";
-			drive-strength = <10>;
-			bias-disable;
-		};
-		pullups {
-			pins = "gpio39";
-			function = "nand";
-			drive-strength = <10>;
-			bias-pull-up;
-		};
-		hold {
-			pins = "gpio40", "gpio41", "gpio42",
-					"gpio43", "gpio44", "gpio45",
-					"gpio46", "gpio47";
-			function = "nand";
-			drive-strength = <10>;
-			bias-bus-hold;
-		};
-	};
-
 	mdio0_pins: mdio0_pins {
-		mux {
-			pins = "gpio0", "gpio1";
-			function = "mdio";
-			drive-strength = <8>;
-			bias-disable;
-		};
-
 		clk {
 			pins = "gpio1";
 			input-disable;
@@ -192,14 +147,6 @@
 	};
 
 	rgmii2_pins: rgmii2_pins {
-		mux {
-			pins = "gpio27", "gpio28", "gpio29", "gpio30", "gpio31", "gpio32",
-					"gpio51", "gpio52", "gpio59", "gpio60", "gpio61", "gpio62" ;
-			function = "rgmii2";
-			drive-strength = <8>;
-			bias-disable;
-		};
-
 		tx {
 			pins = "gpio27", "gpio28", "gpio29", "gpio30", "gpio31", "gpio32" ;
 			input-disable;
@@ -296,11 +243,11 @@
 	};
 
 	/*
-		* The i2c device on gsbi4 should not be enabled.
-		* On ipq806x designs gsbi4 i2c is meant for exclusive
-		* RPM usage. Turning this on in kernel manifests as
-		* i2c failure for the RPM.
-		*/
+	* The i2c device on gsbi4 should not be enabled.
+	* On ipq806x designs gsbi4 i2c is meant for exclusive
+	* RPM usage. Turning this on in kernel manifests as
+	* i2c failure for the RPM.
+	*/
 };
 
 &nand_controller {
@@ -364,7 +311,7 @@
 
 			reserve@e680000 {
 				label = "reserve";
-				reg = <0xe680000 0x780000>;
+				reg = <0xe6800000 0x0780000>;
 				read-only;
 			};
 		};
@@ -417,15 +364,94 @@
 	};
 };
 
+// &mdio0 {
+// 	status = "okay";
+
+// 	pinctrl-0 = <&mdio0_pins>;
+// 	pinctrl-names = "default";
+
+// 	switch@10 {
+// 		compatible = "qca,qca8337";
+// 		#address-cells = <1>;
+// 		#size-cells = <0>;
+// 		reg = <0x10>;
+
+// 		ports {
+// 			#address-cells = <1>;
+// 			#size-cells = <0>;
+
+// 			port@0 {
+// 				reg = <0>;
+// 				label = "cpu";
+// 				ethernet = <&gmac1>;
+// 				phy-mode = "rgmii-id";
+
+// 				fixed-link {
+// 					speed = <1000>;
+// 					full-duplex;
+// 				};
+// 			};
+
+// 			port@1 {
+// 				reg = <1>;
+// 				label = "lan1";
+// 			};
+
+// 			port@2 {
+// 				reg = <2>;
+// 				label = "lan2";
+// 			};
+
+// 			port@3 {
+// 				reg = <3>;
+// 				label = "lan3";
+// 			};
+
+// 			port@4 {
+// 				reg = <4>;
+// 				label = "lan4";
+// 			};
+
+// 			port@5 {
+// 				reg = <5>;
+// 				label = "wan";
+// 			};
+
+// 			/*
+// 			port@6 {
+// 					reg = <0>;
+// 					label = "cpu";
+// 					ethernet = <&gmac2>;
+// 					phy-mode = "rgmii";
+
+// 					fixed-link {
+// 							speed = <1000>;
+// 							full-duplex;
+// 							pause;
+// 							asym-pause;
+// 					};
+// 			};
+// 			*/
+// 		};
+// 	};
+// };
+
 &gmac1 {
 	status = "okay";
+	compatible = "qcom,nss-gmac";
+	reg = <0x37200000 0x200000>;
+	interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
 	phy-mode = "rgmii";
 	qcom,id = <1>;
-	qcom,phy_mdio_addr = <4>;
-	qcom,poll_required = <0>;
-	qcom,rgmii_delay = <1>;
+	qcom,pcs-chanid = <0>;
+	qcom,phy-mdio-addr = <4>;
+	qcom,poll-required = <0>;
+	qcom,rgmii-delay = <1>;
 	qcom,phy_mii_type = <0>;
 	qcom,emulation = <0>;
+	qcom,forced-speed = <1000>;
+	qcom,forced-duplex = <1>;
+	qcom,socver = <0>;
 	qcom,irq = <255>;
 	mdiobus = <&mdio0>;
 
@@ -442,13 +468,20 @@
 
 &gmac2 {
 	status = "okay";
+	compatible = "qcom,nss-gmac";
+	reg = <0x37400000 0x200000>;
+	interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
 	phy-mode = "sgmii";
 	qcom,id = <2>;
-	qcom,phy_mdio_addr = <0>;	/* none */
-	qcom,poll_required = <0>;	/* no polling */
-	qcom,rgmii_delay = <0>;
+	qcom,pcs-chanid = <1>;
+	qcom,phy-mdio-addr = <0>;	/* none */
+	qcom,poll-required = <0>;	/* no polling */
+	qcom,rgmii-delay = <0>;
 	qcom,phy_mii_type = <1>;
 	qcom,emulation = <0>;
+	qcom,forced-speed = <1000>;
+	qcom,forced-duplex = <1>;
+	qcom,socver = <0>;
 	qcom,irq = <258>;
 	mdiobus = <&mdio0>;
 
@@ -489,9 +522,39 @@
 
 &pcie0 {
 	status = "okay";
+
+	bridge@0,0 {
+		reg = <0x00000000 0 0 0 0>;
+		#address-cells = <3>;
+		#size-cells = <2>;
+		ranges;
+
+		wifi@1,0 {
+			compatible = "pci168c,0046";
+			reg = <0x00010000 0 0 0 0>;
+
+			mtd-mac-address = <&art 6>;
+			mtd-mac-address-increment = <(1)>;
+		};
+	};
 };
 
 &pcie1 {
 	status = "okay";
 	max-link-speed = <1>;
+
+	bridge@0,0 {
+		reg = <0x00000000 0 0 0 0>;
+		#address-cells = <3>;
+		#size-cells = <2>;
+		ranges;
+
+		wifi@1,0 {
+			compatible = "pci168c,0046";
+			reg = <0x00010000 0 0 0 0>;
+
+			mtd-mac-address = <&art 6>;
+			mtd-mac-address-increment = <(2)>;
+		};
+	};
 };
