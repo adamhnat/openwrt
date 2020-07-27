@@ -294,6 +294,7 @@ CONFIG_PKG_ASLR_PIE_REGULAR=y
 # CONFIG_PKG_ASLR_PIE_ALL is not set
 # CONFIG_PKG_CC_STACKPROTECTOR_NONE is not set
 CONFIG_PKG_CC_STACKPROTECTOR_REGULAR=y
+# CONFIG_PKG_CC_STACKPROTECTOR_STRONG is not set
 # CONFIG_KERNEL_CC_STACKPROTECTOR_NONE is not set
 CONFIG_KERNEL_CC_STACKPROTECTOR_REGULAR=y
 # CONFIG_KERNEL_CC_STACKPROTECTOR_STRONG is not set
@@ -340,8 +341,8 @@ CONFIG_EXTRA_GCC_CONFIG_OPTIONS=""
 CONFIG_GDB=y
 CONFIG_USE_MUSL=y
 CONFIG_SSP_SUPPORT=y
-CONFIG_BINUTILS_VERSION_2_31_1=y
-CONFIG_BINUTILS_VERSION="2.31.1"
+CONFIG_BINUTILS_VERSION_2_34=y
+CONFIG_BINUTILS_VERSION="2.34"
 CONFIG_GCC_VERSION="8.4.0"
 # CONFIG_GCC_USE_IREMAP is not set
 CONFIG_LIBC="musl"
@@ -1613,6 +1614,8 @@ CONFIG_PACKAGE_htop=y
 # CONFIG_PACKAGE_fast-classifier-example is not set
 # CONFIG_PACKAGE_jose is not set
 # CONFIG_PACKAGE_libjose is not set
+# CONFIG_PACKAGE_nginx-mod-luci-ssl is not set
+# CONFIG_PACKAGE_nginx-util is not set
 # CONFIG_PACKAGE_tang is not set
 # CONFIG_PACKAGE_wireguard-tools is not set
 # end of Extra packages
@@ -1922,6 +1925,7 @@ CONFIG_PACKAGE_kmod-fs-ext4=y
 #
 # Hardware Monitoring Support
 #
+# CONFIG_PACKAGE_kmod-gl-mifi-mcu is not set
 # CONFIG_PACKAGE_kmod-hwmon-ad7418 is not set
 # CONFIG_PACKAGE_kmod-hwmon-adcxx is not set
 # CONFIG_PACKAGE_kmod-hwmon-ads1015 is not set
@@ -2083,7 +2087,7 @@ CONFIG_PACKAGE_kmod-nls-utf8=y
 # Netfilter Extensions
 #
 # CONFIG_PACKAGE_kmod-arptables is not set
-# CONFIG_PACKAGE_kmod-br-netfilter is not set
+CONFIG_PACKAGE_kmod-br-netfilter=y
 # CONFIG_PACKAGE_kmod-ebtables is not set
 # CONFIG_PACKAGE_kmod-ebtables-ipv4 is not set
 # CONFIG_PACKAGE_kmod-ebtables-ipv6 is not set
@@ -2130,7 +2134,7 @@ CONFIG_PACKAGE_kmod-ipt-nat=y
 # CONFIG_PACKAGE_kmod-ipt-nflog is not set
 # CONFIG_PACKAGE_kmod-ipt-nfqueue is not set
 CONFIG_PACKAGE_kmod-ipt-offload=y
-# CONFIG_PACKAGE_kmod-ipt-physdev is not set
+CONFIG_PACKAGE_kmod-ipt-physdev=y
 # CONFIG_PACKAGE_kmod-ipt-proto is not set
 # CONFIG_PACKAGE_kmod-ipt-psd is not set
 # CONFIG_PACKAGE_kmod-ipt-quota2 is not set
@@ -2211,6 +2215,7 @@ CONFIG_PACKAGE_kmod-ifb=y
 # CONFIG_PACKAGE_kmod-natsemi is not set
 # CONFIG_PACKAGE_kmod-ne2k-pci is not set
 # CONFIG_PACKAGE_kmod-niu is not set
+# CONFIG_PACKAGE_kmod-nss-ifb is not set
 # CONFIG_PACKAGE_kmod-of-mdio is not set
 # CONFIG_PACKAGE_kmod-pcnet32 is not set
 # CONFIG_PACKAGE_kmod-phy-bcm84881 is not set
@@ -4028,7 +4033,6 @@ CONFIG_PACKAGE_libuuid=y
 # CONFIG_PACKAGE_musl-fts is not set
 # CONFIG_PACKAGE_mxml is not set
 # CONFIG_PACKAGE_nacl is not set
-# CONFIG_PACKAGE_nlohmannjson is not set
 # CONFIG_PACKAGE_nspr is not set
 # CONFIG_PACKAGE_oniguruma is not set
 # CONFIG_PACKAGE_open-isns is not set
@@ -4232,6 +4236,7 @@ CONFIG_PACKAGE_luci-app-vpn-policy-routing=y
 CONFIG_PACKAGE_luci-app-wifischedule=y
 # CONFIG_PACKAGE_luci-app-wireguard is not set
 CONFIG_PACKAGE_luci-app-wol=y
+# CONFIG_PACKAGE_luci-app-xinetd is not set
 # CONFIG_PACKAGE_luci-app-yggdrasil is not set
 # end of 3. Applications
 
@@ -4269,6 +4274,7 @@ CONFIG_PACKAGE_luci-proto-ppp=y
 #
 # 6. Libraries
 #
+CONFIG_PACKAGE_luci-lib-base=y
 # CONFIG_PACKAGE_luci-lib-dracula is not set
 # CONFIG_PACKAGE_luci-lib-httpclient is not set
 # CONFIG_PACKAGE_luci-lib-httpprotoutils is not set
@@ -5229,7 +5235,7 @@ CONFIG_PACKAGE_iptables-mod-ipopt=y
 # CONFIG_PACKAGE_iptables-mod-nat-extra is not set
 # CONFIG_PACKAGE_iptables-mod-nflog is not set
 # CONFIG_PACKAGE_iptables-mod-nfqueue is not set
-# CONFIG_PACKAGE_iptables-mod-physdev is not set
+CONFIG_PACKAGE_iptables-mod-physdev=y
 # CONFIG_PACKAGE_iptables-mod-proto is not set
 # CONFIG_PACKAGE_iptables-mod-psd is not set
 # CONFIG_PACKAGE_iptables-mod-quota2 is not set
@@ -5720,14 +5726,11 @@ CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_kcptun-server is not set
 # CONFIG_PACKAGE_lighttpd is not set
 # CONFIG_PACKAGE_nginx is not set
-CONFIG_NGINX_NOPCRE=y
 # CONFIG_PACKAGE_nginx-all-module is not set
 # CONFIG_PACKAGE_nginx-mod-luci is not set
-# CONFIG_PACKAGE_nginx-mod-luci-ssl is not set
 # CONFIG_PACKAGE_nginx-ssl is not set
 # CONFIG_PACKAGE_nginx-ssl-util is not set
 # CONFIG_PACKAGE_nginx-ssl-util-nopcre is not set
-# CONFIG_PACKAGE_nginx-util is not set
 # CONFIG_PACKAGE_polipo is not set
 # CONFIG_PACKAGE_privoxy is not set
 # CONFIG_PACKAGE_radicale is not set
